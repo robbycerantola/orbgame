@@ -339,7 +339,9 @@ impl Scene {
 
         while offset < last_offset {
             let next_offset = offset + stride as usize;
-            renderer.image(x, y, w, 1, &image.data()[offset..]);
+            //renderer.image_legacy(x, y, w, 1, &image.data()[offset..]); //to use old rendering implementation
+            renderer.image(x, y, w, 1, &image.data()[offset..]);  //faster 
+            //renderer.image_opaque(x, y, w, 1, &image.data()[offset..]);  //fastest but withou transparency
             offset = next_offset;
             y += 1;
         }
